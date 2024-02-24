@@ -1,0 +1,26 @@
+<mat-card>
+    <table class="table table-hover" matSort (matSortChange)="sortData($event)" matSortActive="id" matSortDirection="desc" matSortDisableClear>
+        <thead>
+          <tr>
+            <th scope="col" mat-sort-header="id">#</th>
+            <th scope="col" mat-sort-header="attempted">Attempted</th>
+            <th scope="col" mat-sort-header="marksGot">Marks Got</th>
+            <th scope="col" mat-sort-header="date">Date</th>
+            <th scope="col" mat-sort-header="quiz">Quiz</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of Results" [ngStyle]="{'background-color' : !result.test_result ? '#f0b4b4':'none'}">
+            <th scope="row" class="resultid" (click)="openModal(result.user.firstName)">{{result.id}}</th>
+            <td>{{result.attempted}}</td>
+            <td>{{result.marksGot}}</td>
+            <td>{{result.date}}</td>
+            <td>{{result.quiz_type}}</td>
+            <td>{{result.user.firstName}}</td>
+          </tr>
+        </tbody>
+      </table>
+</mat-card>
+
+<!-- <button class="btn btn-primary" (click)="openModal()">Open modal</button>
+<app-send-notification *ngIf="false" [testingData]="testingdata"></app-send-notification> -->

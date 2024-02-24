@@ -1,0 +1,66 @@
+<!-- 
+<mat-card>
+    <mat-action-list>
+        <div mat-subheader>Menu</div>
+        <button mat-list-item routerLink="/admin"><mat-icon mat-list-icon>home</mat-icon><span class="menu-text">Home</span></button>
+        <button mat-list-item routerLink="/admin/test-result">
+            <mat-icon mat-list-icon>poll</mat-icon>
+            <span class="menu-text">Result</span> 
+        </button>
+        <button mat-list-item routerLink="/admin/profile">
+            <mat-icon mat-list-icon>account_circle</mat-icon>
+            <span class="menu-text">Profile</span>
+        </button>
+        <button mat-list-item routerLink="/admin/categories">
+            <mat-icon mat-list-icon>list</mat-icon>
+            <span class="menu-text">Categories</span>
+        </button>
+        <button mat-list-item routerLink="/admin/quizzes">
+            <mat-icon mat-list-icon>quiz</mat-icon>
+            <span class="menu-text">Quizez</span>
+        </button>
+        <button mat-list-item (click)="logout()">
+            <mat-icon mat-list-icon>logout</mat-icon>
+            <span class="menu-text">Logout</span>
+        </button>
+    </mat-action-list>
+</mat-card>
+ -->
+
+
+ <mat-card>
+    <!-- Toggle button for smaller screens -->
+    <button *ngIf="isSmallScreen()" mat-icon-button (click)="toggleMenu()">
+      <mat-icon>{{ isMenuOpen ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+    </button>
+  
+    <!-- Menu items (visible when menu is open or on smaller screens) -->
+    <mat-action-list *ngIf="isMenuOpen" [ngClass]="{'hidden-menu': !isMenuOpen && !isSmallScreen()}">
+      <div mat-subheader>Menu</div>
+      <button mat-list-item routerLink="/admin">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <span class="menu-text">Home</span>
+      </button>
+      <button mat-list-item routerLink="/admin/test-result">
+        <mat-icon mat-list-icon>poll</mat-icon>
+        <span class="menu-text">Result</span>
+      </button>
+      <button mat-list-item routerLink="/admin/profile">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <span class="menu-text">Profile</span>
+      </button>
+      <button mat-list-item routerLink="/admin/categories">
+        <mat-icon mat-list-icon>list</mat-icon>
+        <span class="menu-text">Categories</span>
+      </button>
+      <button mat-list-item routerLink="/admin/quizzes">
+        <mat-icon mat-list-icon>quiz</mat-icon>
+        <span class="menu-text">Quizzes</span>
+      </button>
+      <button mat-list-item (click)="logout()">
+        <mat-icon mat-list-icon>logout</mat-icon>
+        <span class="menu-text">Logout</span>
+      </button>
+    </mat-action-list>
+  </mat-card>
+  

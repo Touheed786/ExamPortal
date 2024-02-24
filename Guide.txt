@@ -1,0 +1,27 @@
+for rich text I used :  ckeditor
+For Loader I used : NgxUILoader
+	1) we can modify loader in import as well : NgxUiLoaderHttpModule.forRoot({ showForeground: true })
+	2) also restrict to perticular api as well
+For Better UI i Used : Material UI,mat-icon
+
+
+
+
+
+JAVA
+------------------
+Command For Running JAR file
+
+java -jar filename.jar
+
+
+connectiong RDS to EC2
+-----------------------
+
+mysql -h database-1.chjayegzl8zq.eu-north-1.rds.amazonaws.com -P 3306 -u examuser -p
+
+
+
+
+
+C:\ProgramData\MySQL\MySQL Server 8.0\Data

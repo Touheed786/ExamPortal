@@ -1,0 +1,45 @@
+.mt-10 {
+    margin-top: 10px;
+}
+
+.example-header-image {
+    background-image: url('../../../../../assets/exam.png');
+    background-size: cover;
+}
+
+.example-update-image{
+    height: 2rem;
+    cursor: pointer;
+
+}
+
+.add-quizz-image-parent{
+    position: absolute;
+    // top: 83%;
+    // left: 88%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.add-quizz-image{
+    height: 4rem;
+    top: 86%;
+    left: 88%;
+    position: fixed;
+}
+
+button{
+    margin: 5px;
+}
+
+.full-width{
+    width: 100%;
+}
+
+mat-icon{
+    width: 10px;
+}
+
+.card-container {
+    position: relative;
+  }

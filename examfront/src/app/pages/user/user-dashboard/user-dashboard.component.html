@@ -1,0 +1,34 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div *ngIf="isSliderComponentVisibleflag" class="col-md-2 staticpage">
+                <app-sidebar-user></app-sidebar-user>
+            </div>
+            <div [ngClass]="{'col-md-12': isQuizStartComponentVisibleflag, 'col-md-10 offset-md-2': !isQuizStartComponentVisibleflag ,'dynamicpages': !isQuizStartComponentVisibleflag}" class="mt-30">
+                <!-- <router-outlet ></router-outlet>  -->
+                <div *ngIf="isLoadQuizComponentVisibleflag">
+                    <app-load-quiz 
+                    (instructionComponentVisibleflag)="instructionComponentVisibleflag($event)"
+                    (currentCIdEvent)="currentCIdEvent($event)" >
+                </app-load-quiz>
+                </div>
+
+                <div *ngIf="isInstructionsComponentVisibleflag">
+                    <app-instructions
+                    [currentCatId]="currentCatId"
+                    (loadQuizComponentVisibleflag)="loadQuizComponentVisibleflag($event)"
+                    (loadQuizStartComponentVisibleflag)="loadQuizStartComponentVisibleflag($event)">
+                </app-instructions>
+                </div>
+
+                <div *ngIf="isQuizStartComponentVisibleflag">
+                    <app-quiz-start [currentCatId]="currentCatId"
+                    (loadQuizComponentVisibleflag)="loadQuizComponentVisibleflag($event)">
+
+                    </app-quiz-start>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

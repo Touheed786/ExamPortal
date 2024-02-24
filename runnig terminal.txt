@@ -1,0 +1,95 @@
+Save that text into in this location by creating file in linux machine on server
+-------------------------------------------------------------------------
+
+/etc/systemd/system# 
+
+file name: examserver.service
+
+sav e that into this file
+
+[Unit]
+Description=A Spring Boot Application For Exam Portal
+After=syslog.target
+
+[Service]
+User=ubuntu
+ExecStart=/home/ubuntu/examproject/examserver.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
+
+enabling service
+------------------
+
+systemctl enable examserver
+systemctl start examserver
+systemctl stop examserver
+systemctl restart examserver
+systemctl status examserver
+
+==================================================
+
+
+
+Install nginx in super user
+---------------------------
+
+
+Save that text into in this location by creating file in linux machine on server
+-------------------------------------------------------------------------
+
+/etc/nginx# cd conf.d/
+
+
+
+file name: touheedexamportal.com.conf
+
+save this in that file
+
+server {
+	listen 0.0.0.0:80;
+	root /home/ubuntu/examproject/examfront;
+server_name 13.49.19.219;
+location / {
+	try_files $uri $uri/ /index.html;
+}
+}
+
+without domain name
+-------------------------
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /home/ubuntu/examproject/examfront;
+        index index.html;
+
+        server_name 13.49.19.219;
+
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+}
+
+Nginx need to have +x access on all directories leading to the site's root directory.
+
+Ensure you have +x on all of the directories in the path leading to the site's root. For example, if the site root is /home/username/project
+
+chmod +x /home/
+chmod +x /home/ubuntu
+chmod +x /home/ubuntu/examportal
+
+
+enable port number 80 in security in bouond
+
+systemctl enable nginx
+systemctl start nginx
+systemctl stop nginx
+systemctl restart nginx
+systemctl status nginx

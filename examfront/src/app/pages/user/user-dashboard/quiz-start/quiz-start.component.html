@@ -1,0 +1,103 @@
+<!-- <p>quiz-start works!</p> -->
+<div class="bootstrap-wrapper" *ngIf="!finished">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                Instructions
+            </div>
+            <div class="col-md-8">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div *ngIf="questionData">
+                                <h1>{{questionData[0].quiz.title}}</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button mat-raised-button color="warn" (click)="finishQuiz()">Finish!</button>
+                        </div>
+                    </div>
+                </div>
+                <mat-card *ngFor="let question of questionData;let i = index" class="mt-2">
+                    <mat-card-content>
+                        <p><strong>Q{{i+1}})</strong> &nbsp; <span [innerHTML]="question.content"></span></p>
+                    </mat-card-content>
+                    <mat-divider></mat-divider>
+                    <div class="container-fluid">
+
+                        <div class="row mt-3 mb-2">
+                            <div *ngIf="question.option1" class="col-md-6">
+                                <!-- <mat-radio-button [value]="question.option1" name="i">{{question.option2}}</mat-radio-button> -->
+                                <input id="option{{i}}1" type="radio" [value]="question.option1" name="option{{i}}1"
+                                    class="mr-2" [(ngModel)]="question.givenAnswer">
+                                <label for="option{{i}}1">{{question.option1}}</label>
+
+                            </div>
+                            <div *ngIf="question.option2" class="col-md-6">
+                                <input id="option{{i}}2" type="radio" [value]="question.option2" name="option{{i}}1"
+                                    class="mr-2" [(ngModel)]="question.givenAnswer">
+                                <label for="option{{i}}2">{{question.option2}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 mb-2">
+                            <div *ngIf="question.option3" class="col-md-6">
+                                <input id="option{{i}}3" type="radio" [value]="question.option3" name="option{{i}}1"
+                                    class="mr-2" [(ngModel)]="question.givenAnswer">
+                                <label for="option{{i}}3">{{question.option3}}</label>
+                            </div>
+                            <div *ngIf="question.option4" class="col-md-6">
+                                <input id="option{{i}}4" type="radio" [value]="question.option4" name="option{{i}}1"
+                                    class="mr-2" [(ngModel)]="question.givenAnswer">
+                                <label for="option{{i}}4">{{question.option4}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-card>
+            </div>
+            <div class="col-md-2 spinner_parent">
+                <mat-card>
+                    <mat-card-header class="pb-3">
+                        <mat-card-title>Progress</mat-card-title>
+                        <mat-card-subtitle>Quiz Will Automatically Submit if time is up!</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h1>{{getFormatedTime()}}</h1>
+
+                        <mat-spinner class="spinner" color="warn" mode="determinate" [value]="(timer / (questionData.length * 2 * 60))*100"></mat-spinner>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Show the Result -->
+
+<div class="bootstrap-wrapper" *ngIf="finished">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <mat-card>
+                <mat-card-header class="d-flex justify-content-center">
+                    <mat-card-title>
+                        <p>{{questionData[0].quiz.title}} Result</p>
+
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="col-xs-1 text-center">
+                    <p>Marks got :{{marksGot | number: '2.1-2'}}</p>
+                    <p>attempted Question :{{attempted}}</p>
+                    <p>Correct Answer :{{correctedAnswer}}</p>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="printResult()">print</button>
+                    <a (click)="homepage()" class="back-quizz-image-parent">
+                        <img src="../../../../../assets/home.png" class="back-quizz-image">
+                    </a>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

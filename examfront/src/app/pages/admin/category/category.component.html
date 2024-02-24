@@ -1,0 +1,15 @@
+<div *ngIf="isViewCategoryComponentVisibleflag">
+    <app-view-categories (cIdEvent)="getCurrentCategoryId($event)"
+    (updateCategory) = "setUpdateCategory($event)"></app-view-categories>
+</div>
+
+<div *ngIf="isAddCategoryComponentVisibleflag">
+    <app-add-category [currentCategoryId]="currentCategoryId"
+    [isUpdateCategory] = "UpdateCategory"
+    (categoryComponentVisibleflag)="categoryComponentVisibleflag($event)">
+    </app-add-category>
+</div>
+
+<a *ngIf="isViewCategoryComponentVisibleflag" class="add-quizz-image-parent" (click)="addCategory()">
+    <img src="../../../../assets/add-quizz.png" class="add-quizz-image">
+</a>

@@ -1,0 +1,21 @@
+<div class="bootstrap-wrapper center">
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6 offset-md-3 text-center">
+                <mat-card>
+                    <div class="container advance">
+
+                        <h1>Welcome to Exam Portal</h1>
+                        <!-- <button type="reset" mat-raised-button color="primary" class="advancebutton">Home Page</button> -->
+                        <a mat-raised-button [routerLink]="'/graphics'" style="cursor: pointer;" class=" text advancebutton" aria-label="Example icon-button with heart icon" title="login">
+                            <mat-icon>code</mat-icon>
+                          </a>
+                    </div>
+                    <button type="reset" mat-raised-button color="primary">Home Page</button>
+
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+<app-graphics *ngIf="isFlagSet"></app-graphics>

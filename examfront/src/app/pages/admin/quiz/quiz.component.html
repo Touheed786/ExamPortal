@@ -1,0 +1,38 @@
+<div *ngIf="isViewQuizComponentVisibleflag">
+    <app-view-quizzes (qIdEvent)="getCurrentQuizId($event)"
+    (updateQuiz) = "setUpdateQuiz($event)"
+    (qIdforQuestion)="geQuizIdforQuestion($event)"
+    
+     ></app-view-quizzes>
+</div>
+<div *ngIf="isAddQuizComponentVisibleflag">
+    <app-add-quizz [currentQuizId]="currentQuizId"
+    [isUpdateQuiz] = "UpdateQuiz"
+    (quizzComponentVisibleflag)="quizzComponentVisibleflag($event)"
+    ></app-add-quizz>
+</div>
+<app-view-quiz-question *ngIf="isQuestionComponentVisibleflag"
+[currentQuizId]="currentQuizId" (backToViewQuiz)="backToViewQuiz($event)"
+(isAddQuestionComponentVisibleflag)="setAddQuestionComponentVisibleflag($event)"
+(sendQIdToAddQuestionComponent)="sendQIdToAddQuestionComponent($event)"
+(quesIdEvent)="getCurrentQuestionId($event)"
+(updateQuestion)="setUpdateQuestion($event)"
+></app-view-quiz-question>
+
+<div *ngIf="isAddQuestionComponentVisibleflag">
+    <app-add-question [currentQuizId]="currentQuizId"
+    (QuestionComponentVisibleflag)="backToQuestionComponentVisibleflag($event)"
+    [currentQuesId]="currentQuesId" [isUpdateQuestion]="UpdateQuestion">
+
+    </app-add-question>
+</div>
+
+<a *ngIf="isViewQuizComponentVisibleflag" class="add-quizz-image-parent" (click)="addQuizz()">
+    <img src="../../../../../assets/add-quizz.png" class="add-quizz-image" >
+</a>
+
+
+
+<!-- <a class="back-quizz-image-parent">
+    <img src="../../../../assets/back.png" class="back-quizz-image">
+</a> -->

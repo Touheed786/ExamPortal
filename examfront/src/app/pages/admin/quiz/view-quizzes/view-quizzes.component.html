@@ -1,0 +1,36 @@
+<div class="card-container">
+    <mat-form-field class="full-width">
+        <mat-label>Sort By Category</mat-label>
+        <mat-select [(ngModel)]="selecteCategory" name="category">
+           <mat-option value="All Categories" (click)="sortQuiz(0)">
+                All Categories
+            </mat-option>
+           <mat-option *ngFor="let c of Categories" [value]="c.title" (click)="sortQuiz(c.cid)">
+                {{c.title}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-card *ngFor="let q of quizzes" class="mt-10 card" [ngStyle]="{'background-color' : !q.active ? '#f0b4b4':'none'}">
+            <!-- <mat-list> -->
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>{{q.title}}</mat-card-title>
+                <mat-card-subtitle>{{q.category.title}}</mat-card-subtitle>
+                <a (click)="update(q.qId)"><img src="../../../../../assets/update.png" class="example-update-image"></a>
+            </mat-card-header>
+            <mat-card-content>
+                {{q.description}}
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-flat-button color="primary" (click)="addAndViewQuestions(q.qId)">Question</button>
+                <button mat-stroked-button>Max Marks({{q.maxMArks}})</button>
+                <button mat-stroked-button>Number of Questions({{q.numberOfQuestions}})</button>
+                <button mat-stroked-button>Attempts</button>
+                <button mat-flat-button color="accent" (click)="delete(q.qId)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+        <!-- <a class="add-quizz-image-parent" routerLink="/admin/add-quizz">
+            <img src="../../../../../assets/add-quizz.png" class="add-quizz-image" >
+        </a> -->
+</div>

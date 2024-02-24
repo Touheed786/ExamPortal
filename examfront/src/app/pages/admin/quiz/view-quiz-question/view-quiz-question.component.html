@@ -1,0 +1,45 @@
+<span style="display: flex;">
+    <h2 class="mr-2">{{quizTitle}}</h2><a (click)="goBackToViewQuick()" class="back-quizz-image-parent">
+        <img src="../../../../assets/back.png" class="back-quizz-image">
+    </a>
+</span>
+
+
+
+<mat-card class="mt-10 card" *ngFor="let question of Questions;let i = index">
+    <mat-card-content>
+        <p>
+            <b class="mr-1">Q{{i+1}})</b>
+            <span [innerHTML]="question.content"></span>
+        </p>
+        <div class="container-fluid">
+            <div class="row">
+                <div *ngIf="question.option1" class="col-md-6">
+                    <p><b class="mr-1">1)</b>{{question.option1}}</p>
+                </div>
+                <div *ngIf="question.option2" class="col-md-6">
+                    <p><b class="mr-1">2)</b>{{question.option2}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="question.option3" class="col-md-6">
+                    <p><b class="mr-1">3)</b>{{question.option3}}</p>
+                </div>
+                <div *ngIf="question.option4" class="col-md-6">
+                    <p><b class="mr-1">4)</b>{{question.option4}}</p>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <p class="mt-10"><b>Correct Answer : </b>{{question.answer}}</p>
+            <a (click)="update(question.quesId)" class="back-quizz-image-parent ml-2">
+                <img src="../../../../assets/edit.png" class="edit-quizz-image">
+            </a>
+            <a (click)="delete(question.quesId)" class="delete-category-parent-image"><img src="../../../../../assets/delete.png"
+                    class="example-delete-image"></a>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<a class="add-quizz-image-parent" (click)="addQuestion()">
+    <img src="../../../../../assets/add-quizz.png" class="add-quizz-image" >
+</a>

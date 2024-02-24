@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="navbar">
+    <a routerLink="/" class="example-icon mr-2 mt-2" aria-label="Example icon-button with menu icon">
+      <mat-icon style="color: white;">menu_book</mat-icon>
+    </a>
+    <span>Exam Portal</span>
+    <span class="example-spacer"></span>
+    <div *ngIf="!isLogIn; else logedout">
+      <a mat-button [routerLink]="'/login'" style="cursor: pointer;" class="example-icon login-icon mr-2 text" aria-label="Example icon-button with heart icon" title="login">
+        <!-- <mat-icon>login</mat-icon> -->
+        Login
+      </a>
+  
+      <!-- </ng-template> -->
+      <a mat-button [routerLink]="'/signup'" style="cursor: pointer;" class="example-icon login-icon text" aria-label="Example icon-button with heart icon" title="Register">
+        Register
+        <!-- <span style="cursor:pointer" class="mr-2">Register</span> -->
+      </a>
+    </div>
+    <ng-template #logedout>
+      <!-- <ng-template #logedOut> -->
+        <a mat-button (click)="logout()" [routerLink]="'/logout'" style="cursor: pointer;" class="example-icon login-icon mr-2 text" aria-label="Example icon-button with heart icon" title="logout">
+          <mat-icon>logout</mat-icon>
+          <!-- Logout -->
+        </a>
+        <a mat-button (click)="profile()" style="cursor: pointer;" class="example-icon login-icon mr-2 text" aria-label="Example icon-button with heart icon" data-toggle="modal" data-target="#exampleModal">
+          {{username}}
+          <!-- Logout -->
+        </a>
+    </ng-template>
+
+  </mat-toolbar>
+

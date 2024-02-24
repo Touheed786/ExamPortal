@@ -1,0 +1,28 @@
+<mat-card class="p-lr">
+    <!-- <mat-list> -->
+    <mat-card-header>
+        <mat-card-title>Add Category</mat-card-title>
+    </mat-card-header>
+    <div class="bootstrap-wrapper">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form #myForm="ngForm" (ngSubmit)="formSubmit()">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input matInput placeholder="Enter Category Title" name="title" [(ngModel)]="category.title" required [disabled]="isDisbaled">
+                    </mat-form-field>
+
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput placeholder="Enter Category Description" name="description" rows="10" [(ngModel)]="category.description" required [disabled]="isDisbaled"></textarea>
+                    </mat-form-field>
+                    <div class="container text-center">
+                        <button type="submit" mat-raised-button color="primary" [disabled]="isDisbaled">Add</button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
+    <button class="doneButtoon" (click)="done()" mat-raised-button color="primary">Done</button>
+    <a (click)="update()" class="example-update" *ngIf="isDisbaled"><img src="../../../../assets/update.png" class="example-update-image"></a>
+</mat-card>

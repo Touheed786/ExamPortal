@@ -1,0 +1,32 @@
+<div class="bootstrap-wrapper center">
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-6 offset-md-3">
+                <mat-card class="p-lr">
+                    {{color | json}}
+                    <form (ngSubmit)="formcolorSubmit()">
+                        <p>
+                            <mat-form-field appearance="fill" class="full-width">
+                                <mat-label>Type navbar color</mat-label>
+                                <input [(ngModel)]="color.navcolor" matInput placeholder="Placeholder" name="navcolor">
+                                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            </mat-form-field>
+                        </p>
+                        <p>
+                            <mat-form-field appearance="fill" class="full-width">
+                                <mat-label>Buttons color</mat-label>
+                                <input [(ngModel)]="color.buttoncolor" matInput placeholder="Placeholder" name="buttoncolor">
+                                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            </mat-form-field>
+                        </p>
+
+                        <div class="container text-center">
+                            <button type="submit" mat-raised-button color="primary">set</button>
+                            <button type="reset" mat-raised-button color="accent">Clear</button>
+                        </div>
+                    </form>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

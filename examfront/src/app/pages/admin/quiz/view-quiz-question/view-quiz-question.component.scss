@@ -1,0 +1,43 @@
+.mt-10 {
+    margin-top: 10px;
+}
+
+.col-md-6:hover{
+    background-color: #eaeaea;
+}
+
+.back-quizz-image-parent {
+    z-index: 1;
+    cursor: pointer;
+}
+
+.back-quizz-image {
+    height: 2rem;
+}
+
+.add-quizz-image-parent{
+    position: absolute;
+    // top: 83%;
+    // left: 88%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.add-quizz-image{
+    height: 4rem;
+    top: 86%;
+    left: 88%;
+    position: fixed;
+}
+
+.edit-quizz-image {
+    height: 21px;
+}
+
+.example-delete-image{
+    height: 2rem;
+    cursor: pointer;
+    z-index: 1;
+    margin-left: 12px;
+
+}

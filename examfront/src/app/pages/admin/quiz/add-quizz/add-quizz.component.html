@@ -1,0 +1,62 @@
+<mat-card class="p-lr">
+    <!-- <mat-list> -->
+    <mat-card-header>
+        <mat-card-title>Add Quizz</mat-card-title>
+    </mat-card-header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form #myForm="ngForm" (ngSubmit)="formSubmit()">
+                    <!-- Title -->
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Title</mat-label>
+                        <input matInput placeholder="Enter Category Title" name="title" [(ngModel)]="quizzData.title" [disabled]="isDisbaled" required>
+                    </mat-form-field>
+
+                    <!-- Description -->
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput placeholder="Enter Category Description" name="description" [disabled]="isDisbaled" rows="3"
+                        [(ngModel)]="quizzData.description" required></textarea>
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Max Marks -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Max Marks</mat-label>
+                                <input matInput placeholder="Enter Maximum Marks here" name="maxMArks" [(ngModel)]="quizzData.maxMArks" [disabled]="isDisbaled" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Number Of Question to be Displayed -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Number Of Questions</mat-label>
+                                <input matInput placeholder="Number Of Questions to be Displayed"
+                                    name="numberOfQuestions" [(ngModel)]="quizzData.numberOfQuestions" [disabled]="isDisbaled" required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- Active Field -->
+                    <mat-slide-toggle class="pb-3" name="active" [(ngModel)]="quizzData.active" [disabled]="isDisbaled"></mat-slide-toggle>Publish Quiz
+
+                    <!-- Select Category -->
+                    <mat-form-field class="full-width">
+                        <mat-label>Category</mat-label>
+                        <mat-select name="category" [(ngModel)]="quizzData.category.cid" [disabled]="isDisbaled">
+                            <mat-option *ngFor="let category of Categories" [value]="category.cid">
+                                {{category.title}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="container text-center">
+                        <button type="submit" mat-raised-button color="primary" [disabled]="isDisbaled">Add</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <button class="doneButtoon" (click)="done()" mat-raised-button color="primary">Done</button>
+    <a (click)="update()" class="example-update" *ngIf="isDisbaled"><img src="../../../../assets/update.png" class="example-update-image"></a>
+</mat-card>
+<!-- {{quizzData | json}} -->

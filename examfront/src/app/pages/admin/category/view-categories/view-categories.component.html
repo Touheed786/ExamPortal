@@ -1,0 +1,28 @@
+<div class="card-container">
+    <mat-card class="mt-10" *ngFor="let c of categories">
+        <!-- <mat-list> -->
+        <!-- <mat-card-header>
+            <mat-card-title>All Categories</mat-card-title>
+        </mat-card-header> -->
+        <!-- <div class="row">
+            <div class="col-md-11"> -->
+        <mat-list-item>
+            <mat-icon matListItemIcon>category</mat-icon>
+            <div matListItemLine>{{c.title}}</div>
+            <div matListItemLine>{{c.description}}</div>
+        </mat-list-item>
+        <!-- </div>
+            <div class="col-md-1"> -->
+        <mat-card-actions>
+            <a (click)="update(c.cid)" class="update-category-parent-image"><img src="../../../../../assets/update.png"
+                    class="example-update-image"></a>
+            <a (click)="delete(c.cid)" class="delete-category-parent-image"><img src="../../../../../assets/delete.png"
+                    class="example-update-image"></a>
+        </mat-card-actions>
+        <!-- </div> -->
+        <!-- <button mat-raised-button color="accent" >Delete</button> -->
+        <!-- </div> -->
+
+
+    </mat-card>
+</div>
