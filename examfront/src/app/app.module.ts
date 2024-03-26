@@ -63,8 +63,6 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import {MatDialogModule} from '@angular/material/dialog';
-import * as bootstrap from "bootstrap";
-import * as $ from "jquery";
 import { SendNotificationComponent } from './pages/admin/test-result/send-notification/send-notification.component';
 
 

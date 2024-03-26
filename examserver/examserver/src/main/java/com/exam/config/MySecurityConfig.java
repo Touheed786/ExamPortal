@@ -3,8 +3,10 @@ package com.exam.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -39,11 +41,13 @@ public class MySecurityConfig  {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
-		.cors(cors -> cors.disable())
+		.cors(Customizer.withDefaults())
+//		.cors(cors -> cors.disable()) //this is giving cors error
 				.authorizeHttpRequests(authorizeRequests -> authorizeRequests
-//						.requestMatchers("*").permitAll()
+//						.requestMatchers("/authenticate","/user/create","/user/forUser").permitAll()
 						.requestMatchers("/generate-token", "/user/","/current-user").permitAll()
-//						.requestMatchers("*","/generate-token", "/user/","/curent-user","/categories/*","/quiz/*","/question/quiz/*","/question/quiz/all/*","/quiz/category/*","/quiz/category/active/*","quiz/all/active/","/question/quiz/*","/question/*","/result/*","question/eval_quiz/*","/user/test","result/*").permitAll()
+
+						.requestMatchers(HttpHeaders.ALLOW).permitAll()
 						.anyRequest().authenticated())
 				.exceptionHandling(
 						exceptionHandling -> exceptionHandling.authenticationEntryPoint(jwtAuthenticationEntryPoint))
