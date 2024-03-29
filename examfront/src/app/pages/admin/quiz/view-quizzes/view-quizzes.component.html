@@ -1,5 +1,5 @@
 <div class="card-container">
-    <mat-form-field class="full-width">
+    <mat-form-field class="full-width margin-top">
         <mat-label>Sort By Category</mat-label>
         <mat-select [(ngModel)]="selecteCategory" name="category">
            <mat-option value="All Categories" (click)="sortQuiz(0)">
@@ -11,7 +11,7 @@
         </mat-select>
     </mat-form-field>
     
-    <mat-card *ngFor="let q of quizzes" class="mt-10 card" [ngStyle]="{'background-color' : !q.active ? '#f0b4b4':'none'}">
+    <mat-card *ngFor="let q of quizzes" class="mb-2 card" [ngStyle]="{'background-color' : !q.active ? '#f0b4b4':'none'}">
             <!-- <mat-list> -->
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>

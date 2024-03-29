@@ -1,16 +1,19 @@
-<div class="card-container">
-    <mat-card class="mt-10" *ngFor="let c of categories">
+<div class="card-container" data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-offset="0" tabindex="0">
+    <mat-card class="mb-2" *ngFor="let c of categories">
         <!-- <mat-list> -->
         <!-- <mat-card-header>
             <mat-card-title>All Categories</mat-card-title>
         </mat-card-header> -->
         <!-- <div class="row">
             <div class="col-md-11"> -->
-        <mat-list-item>
-            <mat-icon matListItemIcon>category</mat-icon>
+        <mat-card-header>
+            <div mat-card-avatar><mat-icon matListItemIcon>category</mat-icon></div>
+            <mat-card-title>{{c.title}}</mat-card-title>
+            <mat-card-subtitle>{{c.description}}</mat-card-subtitle>
+            <!-- <mat-icon matListItemIcon>category</mat-icon>
             <div matListItemLine>{{c.title}}</div>
-            <div matListItemLine>{{c.description}}</div>
-        </mat-list-item>
+            <div matListItemLine>{{c.description}}</div> -->
+        </mat-card-header>
         <!-- </div>
             <div class="col-md-1"> -->
         <mat-card-actions>

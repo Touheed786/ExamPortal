@@ -1,8 +1,16 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+// .example-spacer {
+//     flex: 1 1 auto;
+//   }
 
-  .navbar{
-    position: fixed;
-    z-index: 999;
-  }
+//   .navbar{
+//     position: fixed;
+//     z-index: 999;
+//   }
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; /* Ensure the navbar stays above other content */
+  box-shadow: -2px 5px 7px 2px #4d4949;
+}

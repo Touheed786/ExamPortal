@@ -30,12 +30,9 @@
 
  <mat-card>
     <!-- Toggle button for smaller screens -->
-    <button *ngIf="isSmallScreen()" mat-icon-button (click)="toggleMenu()">
-      <mat-icon>{{ isMenuOpen ? 'chevron_left' : 'chevron_right' }}</mat-icon>
-    </button>
   
     <!-- Menu items (visible when menu is open or on smaller screens) -->
-    <mat-action-list *ngIf="isMenuOpen" [ngClass]="{'hidden-menu': !isMenuOpen && !isSmallScreen()}">
+    <mat-action-list>
       <div mat-subheader>Menu</div>
       <button mat-list-item routerLink="/admin">
         <mat-icon mat-list-icon>home</mat-icon>
