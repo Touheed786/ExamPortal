@@ -14,3 +14,18 @@
   z-index: 1000; /* Ensure the navbar stays above other content */
   box-shadow: -2px 5px 7px 2px #4d4949;
 }
+
+.nav-link {
+  font-size: 1rem;
+  color: #171f03; /* Color for default tab */
+}
+
+.nav-item.active .nav-link {
+  color: #fff; /* Color for active tab */
+  background-color: #007bff; /* Background color for active tab */
+  border-radius: 4px; /* Rounded corners for active tab */
+  padding: 8px 12px; /* Padding for active tab */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Bold text for active tab */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}

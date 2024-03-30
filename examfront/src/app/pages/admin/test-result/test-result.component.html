@@ -1,36 +1,40 @@
-<mat-card>
-    <table class="table table-hover" matSort (matSortChange)="sortData($event)" matSortActive="id" matSortDirection="desc" matSortDisableClear>
+<div class="card p-2 datatable">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
         <thead>
           <tr>
-            <th scope="col" mat-sort-header="id">#</th>
-            <th scope="col" mat-sort-header="attempted">Attempted</th>
-            <th scope="col" mat-sort-header="marksGot">Marks Got</th>
-            <th scope="col" mat-sort-header="date">Date</th>
-            <th scope="col" mat-sort-header="quiz">Quiz</th>
+            <th scope="col">#</th>
+            <th scope="col">Attempted</th>
+            <th scope="col">Marks Got</th>
+            <th scope="col">Date</th>
+            <th scope="col">Quiz</th>
+            <th scope="col">User</th>
+            <th scope="col">Result</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let result of Results" [ngStyle]="{'background-color' : !result.test_result ? '#f0b4b4':'none'}">
-            <th scope="row" class="resultid" (click)="openModal(result.user.firstName)">{{result.id}}</th>
+            <!-- <th scope="row" class="resultid" (click)="openModal(result.user.firstName)">{{result.id}}</th> -->
+            <th scope="row" class="resultid" data-bs-toggle="modal" data-bs-target="#exampleModal">{{result.id}}</th>
             <td>{{result.attempted}}</td>
             <td>{{result.marksGot}}</td>
             <td>{{result.date}}</td>
             <td>{{result.quiz_type}}</td>
             <td>{{result.user.firstName}}</td>
+            <td>{{result.test_result===true? "pass":"fail"}}</td>
           </tr>
         </tbody>
       </table>
-</mat-card>
+    </div>
 
 <!-- <button class="btn btn-primary" (click)="openModal()">Open modal</button>
 <app-send-notification *ngIf="false" [testingData]="testingdata"></app-send-notification> -->
 
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Open Modal
-</button>
+</button> -->
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Simple Modal</h5>
@@ -38,6 +42,15 @@
       </div>
       <div class="modal-body">
         <p>This is a simple modal example.</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum modi amet obcaecati non voluptas veniam numquam deserunt. Et, amet. Exercitationem repellat veritatis praesentium fugiat sed! Eveniet quasi neque deleniti sint?
+        Sequi fugiat officiis illo alias magnam nam, error doloribus, facilis, repudiandae nobis perspiciatis minima consequuntur eligendi commodi. Aut dolore ea, nisi sed, architecto quaerat perferendis laboriosam saepe amet minus error.
+        Sint incidunt tempora, labore maiores impedit quidem vero laborum eius expedita cum. Iusto veniam reiciendis hic. Exercitationem, quae! Deserunt, facere distinctio ex fugiat aperiam aliquam at ratione nemo tempore voluptates?
+        Voluptas unde quam, incidunt in, accusantium sequi atque, magnam temporibus id assumenda aliquid earum deleniti. Ratione, neque id. Incidunt sapiente, iste vel autem nesciunt culpa nostrum. Odit quis doloremque ullam?
+        Praesentium ad quisquam minima aliquam sit natus nobis, fugiat, doloribus magni officia, cupiditate tempora? Labore, possimus fuga. Dignissimos perspiciatis sint cumque ipsum, quas aperiam minus placeat veritatis enim vitae reprehenderit.
+        Dolores laboriosam ab voluptatibus nisi error, delectus enim voluptatum nulla culpa sit quia magnam, id, fugit commodi quaerat ea nemo fuga. Aliquid sed perferendis asperiores sequi eos repellendus voluptas harum!
+        Aspernatur itaque delectus nobis quibusdam, culpa repudiandae perspiciatis ipsam amet totam iusto officia deleniti tempore, molestias cumque distinctio. Atque, inventore corporis! Quia temporibus amet architecto nostrum distinctio excepturi eveniet eum?
+        Nam minima placeat neque reiciendis vero similique aliquid eius. Aliquid ipsum aperiam non libero deleniti alias quaerat perferendis omnis, laboriosam totam iusto exercitationem consequuntur. Nesciunt reiciendis rerum ipsa expedita minus?
+        </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -45,4 +58,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>

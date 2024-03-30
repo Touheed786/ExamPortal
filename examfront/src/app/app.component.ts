@@ -16,6 +16,5 @@ export class AppComponent {
     this.questionService.startQuizStatus.asObservable().subscribe((data)=>{
       this.isVisibleNavBar = data;
     })
-
   }
 }

@@ -13,4 +13,8 @@ export class ResultService {
   {
     return this.http.get(`${baseUrl}/result/`);
   }
+
+  public getResultByUser(userId:number){
+    // return this.http.get()
+  }
 }

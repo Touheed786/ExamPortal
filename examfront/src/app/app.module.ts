@@ -63,7 +63,8 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import {MatDialogModule} from '@angular/material/dialog';
-import { SendNotificationComponent } from './pages/admin/test-result/send-notification/send-notification.component';
+import {DataTablesModule} from 'angular-datatables';
+import { StatisticsComponent } from './pages/admin/statistics/statistics.component'
 
 
 @NgModule({
@@ -93,7 +94,7 @@ import { SendNotificationComponent } from './pages/admin/test-result/send-notifi
     InstructionsComponent,
     QuizStartComponent,
     TestResultComponent,
-    SendNotificationComponent 
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -116,7 +117,7 @@ import { SendNotificationComponent } from './pages/admin/test-result/send-notifi
     MatProgressSpinnerModule,
     MatRadioModule,
     NgxUiLoaderModule,
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    // NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     MatSortModule,
     MdbAccordionModule,
     MdbCarouselModule,
@@ -133,7 +134,8 @@ import { SendNotificationComponent } from './pages/admin/test-result/send-notifi
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    MatDialogModule
+    MatDialogModule,
+    DataTablesModule
      
 
     

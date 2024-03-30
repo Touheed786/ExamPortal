@@ -6,19 +6,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/admin">Home</a>
+        <li class="nav-item" [class.active]="activeTab === 'home'">
+          <a class="nav-link" routerLink="/admin" (click)="setActiveTab('home')">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/categories">Categories</a>
+        <li *ngIf="isAdmin()" class="nav-item" [class.active]="activeTab === 'categories'">
+          <a class="nav-link" routerLink="/admin/categories" (click)="setActiveTab('categories')">Categories</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/quizzes">Quizez</a>
+        <li *ngIf="isAdmin()" class="nav-item" [class.active]="activeTab === 'quizez'">
+          <a class="nav-link" routerLink="/admin/quizzes" (click)="setActiveTab('quizez')">Quizez</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin/test-result">Result</a>
+        <li *ngIf="isAdmin()" class="nav-item" [class.active]="activeTab === 'result'">
+          <a class="nav-link" routerLink="/admin/test-result" (click)="setActiveTab('result')">Result</a>
+        </li>
+        <li *ngIf="isAdmin()" class="nav-item" [class.active]="activeTab === 'statistics'">
+          <a class="nav-link" routerLink="/admin/statistics" (click)="setActiveTab('statistics')">Statistics</a>
         </li>
       </ul>
+      <!-- <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success btn-light" type="submit">Search</button>
+      </form> -->
       <!-- <li class="nav-item"> -->
         <div *ngIf="!isLogIn; else logedout">
           <a mat-button [routerLink]="'/login'" style="cursor: pointer;" class="example-icon login-icon mr-2 text" aria-label="Example icon-button with heart icon" title="login">
@@ -47,10 +54,6 @@
         </ng-template>
       <!-- </li> -->
       
-      <!-- <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> -->
     </div>
   </div>
 </nav>

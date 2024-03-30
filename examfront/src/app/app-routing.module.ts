@@ -18,6 +18,7 @@ import { CategoryComponent } from './pages/admin/category/category.component';
 import { QuizComponent } from './pages/admin/quiz/quiz.component';
 import { LoadQuizComponent } from './pages/user/user-dashboard/load-quiz/load-quiz.component';
 import { TestResultComponent } from './pages/admin/test-result/test-result.component';
+import { StatisticsComponent } from './pages/admin/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
       {
         path:'test-result',
         component:TestResultComponent
+      },
+      {
+        path:'statistics',
+        component:StatisticsComponent
       },
     ]
   },

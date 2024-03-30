@@ -11,6 +11,9 @@
         </mat-select>
     </mat-form-field>
     
+    <div class="">
+
+    
     <mat-card *ngFor="let q of quizzes" class="mb-2 card" [ngStyle]="{'background-color' : !q.active ? '#f0b4b4':'none'}">
             <!-- <mat-list> -->
             <mat-card-header>
@@ -33,4 +36,5 @@
         <!-- <a class="add-quizz-image-parent" routerLink="/admin/add-quizz">
             <img src="../../../../../assets/add-quizz.png" class="add-quizz-image" >
         </a> -->
+    </div>
 </div>

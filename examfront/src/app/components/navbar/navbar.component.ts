@@ -11,6 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class NavbarComponent {
   username = ""
   isLogIn = false;
+  activeTab:string = "home";
   constructor(private login:LoginService,private router:Router){
   }
   ngOnInit()
@@ -37,6 +38,12 @@ export class NavbarComponent {
     this.isLogIn = this.login.isLogedIn()
   }
 
+  isAdmin():boolean{
+    if(this.isLogIn)
+      return this.login.getUserRole()==='ADMIN';
+    return false;
+  }
+
   getUsername(){
     if(this.isLogIn)
       this.username = this.login.getUser().username;
@@ -44,5 +51,9 @@ export class NavbarComponent {
 
   profile(){
     this.login.getUserRole()=='ADMIN'?this.router.navigate(["/admin/profile"]):this.router.navigate(["/user-dashboard/profile"])
+  }
+
+  setActiveTab(tab: string): void {
+    this.activeTab = tab;
   }
 }
