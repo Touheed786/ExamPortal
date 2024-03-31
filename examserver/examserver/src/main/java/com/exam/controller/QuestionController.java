@@ -2,6 +2,8 @@ package com.exam.controller;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -166,8 +168,13 @@ public class QuestionController {
 		result.setUser(user);
 		result.setQuiz(quiz);
 //		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-		Date date = new Date();
-		result.setDate(date);
+//		Date date = new Date();
+		LocalDate currentDate = LocalDate.now();
+        
+        // Format the current date to a string
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dateString = currentDate.format(formatter);
+		result.setDate(dateString);
 		
 		if(percentage>=35F)
 		{

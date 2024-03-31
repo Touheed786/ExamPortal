@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exam.model.User;
+import com.exam.model.exam.CharDataResponse;
 import com.exam.model.exam.Result;
 import com.exam.repo.ResultRepository;
 import com.exam.service.ResultService;
@@ -47,5 +49,9 @@ public class ResultController {
 		return ResponseEntity.ok(result);
 	}
 	
+	@GetMapping("/getChartData")
+	public List<CharDataResponse> getChartData(){
+		return this.resultService.getChartData();
+	}
 	
 }

@@ -64,7 +64,7 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DataTablesModule} from 'angular-datatables';
-import { StatisticsComponent } from './pages/admin/statistics/statistics.component'
+import { StatisticsComponent } from './pages/admin/statistics/statistics.component';
 
 
 @NgModule({
