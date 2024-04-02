@@ -1,8 +1,11 @@
 package com.exam.service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.exam.model.exam.Category;
+import com.exam.model.exam.Question;
 import com.exam.model.exam.Quiz;
 
 public interface QuizService {

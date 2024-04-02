@@ -14,7 +14,11 @@ export class ResultService {
     return this.http.get(`${baseUrl}/result/`);
   }
 
-  public getStatistics(){
-    return this.http.get(`${baseUrl}/result/getChartData`);
+  public getStatistics(selectedYear:any){
+    return this.http.get(`${baseUrl}/result/getChartData/${selectedYear}`);
+  }
+
+  public getYears(){
+    return this.http.get(`${baseUrl}/result/year`)
   }
 }

@@ -10,5 +10,7 @@ import com.exam.model.exam.Result;
 public interface ResultRepository extends JpaRepository<Result, Integer> {
 	Set<Result> findByUser(User user);
 	
+	Set<Result> findByYear(String year);
+	
 
 }

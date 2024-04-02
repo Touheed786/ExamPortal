@@ -49,9 +49,14 @@ public class ResultController {
 		return ResponseEntity.ok(result);
 	}
 	
-	@GetMapping("/getChartData")
-	public List<CharDataResponse> getChartData(){
-		return this.resultService.getChartData();
+	@GetMapping("/getChartData/{year}")
+	public List<CharDataResponse> getChartData(@PathVariable("year") String year){
+		return this.resultService.getChartData(year);
+	}
+	
+	@GetMapping("/year")
+	public List<Long> getYear(){
+		return resultService.getYear();
 	}
 	
 }

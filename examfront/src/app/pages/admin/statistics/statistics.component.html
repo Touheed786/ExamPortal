@@ -1,4 +1,10 @@
+<div class="headerTitle">
+    <h2>Yearly Result Chart</h2>&nbsp;
+    <h2 *ngIf="selectedYear">({{selectedYear}})</h2>
+</div>
+<select [(ngModel)]="selectedYear" (change)="getStatistics()">
+    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+  </select>
 <div class="container">
-    <h2>Pie Chart</h2>
     <canvas id="piechart"></canvas>
 </div>

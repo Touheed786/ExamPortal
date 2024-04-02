@@ -26,6 +26,8 @@ public class Result {
 	private int numberOfQuestion;
 	private String date;
 	private boolean test_result;
+	private String month;
+	private String year;
 	
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -102,6 +104,18 @@ public class Result {
 		this.test_result = test_result;
 	}
 	
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
 	@Override
 	public String toString() {
 		return "Result [id=" + id + ", quiz=" + quiz + ", marksGot=" + marksGot + ", correctedAnswer=" + correctedAnswer

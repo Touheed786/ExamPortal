@@ -6,6 +6,10 @@ public class CharDataResponse {
 	private String key;
 	private ChartData chartData;
 	
+	public CharDataResponse() {
+		super();
+	}
+
 	public CharDataResponse(String key, ChartData chartData) {
 		super();
 		this.key = key;

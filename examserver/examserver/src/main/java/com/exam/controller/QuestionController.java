@@ -121,72 +121,7 @@ public class QuestionController {
 	@PostMapping("/eval_quiz/{userId}")
 	public ResponseEntity<?> evalQuiz(@RequestBody List<Question> questions,@PathVariable("userId") Long userId)
 	{
-		String quizTitle = questions.get(0).getQuiz().getTitle();
-		Long quizid = questions.get(0).getQuiz().getqId();
+		return ResponseEntity.ok(resultService.evaluateQuiz(questions, userId));
 
-		int marksGot =0;
-		int correctedAnswer=0;
-		int attempted=0;
-		int numberOfQuestion=questions.size();
-		double quizMarks =0;
-		float percentage =0;
-		for (Question ques : questions) {
-//			single question
-			Question question = questionService.getQuestion(ques.getQuesId());
-			if (question.getAnswer().equals(ques.getGivenAnswer()))
-			{
-				correctedAnswer++;
-			}
-			if(ques.getGivenAnswer()!= null)
-			{
-				attempted++;
-			}
-		}
-		quizMarks = Integer.parseInt(questions.get(0).getQuiz().getMaxMArks());
-		marksGot = (int) (quizMarks / numberOfQuestion * correctedAnswer);
-		percentage = (float) ((marksGot / quizMarks) * 100);
-		
-		
-		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("quizTitle", quizTitle);
-		map.put("marksGot", marksGot);
-		map.put("correctedAnswer", correctedAnswer);
-		map.put("attempted", attempted);
-		map.put("numberOfQuestion", numberOfQuestion);
-
-		User user = new User();
-		user.setId(userId);
-		Quiz quiz = new Quiz();
-		quiz.setqId(quizid);
-		
-		Result result = new Result();
-		result.setQuiz_type(quizTitle);
-		result.setMarksGot(marksGot);
-		result.setCorrectedAnswer(correctedAnswer);
-		result.setAttempted(attempted);
-		result.setNumberOfQuestion(numberOfQuestion);
-		result.setUser(user);
-		result.setQuiz(quiz);
-//		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//		Date date = new Date();
-		LocalDate currentDate = LocalDate.now();
-        
-        // Format the current date to a string
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String dateString = currentDate.format(formatter);
-		result.setDate(dateString);
-		
-		if(percentage>=35F)
-		{
-			result.setTest_result(true);
-		}
-		result.setTest_result(result.getTest_result());
-		
-		this.resultService.addResult(result);
-		
-		System.out.println("Percentage :"+percentage);
-		System.out.println("Result Added Successfully...Hurrreeee");
-		
-		return ResponseEntity.ok(map);
 	}
 }
