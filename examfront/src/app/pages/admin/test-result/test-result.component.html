@@ -14,7 +14,7 @@
         <tbody>
           <tr *ngFor="let result of Results" [ngStyle]="{'background-color' : !result.test_result ? '#f0b4b4':'none'}">
             <!-- <th scope="row" class="resultid" (click)="openModal(result.user.firstName)">{{result.id}}</th> -->
-            <th scope="row" class="resultid" data-bs-toggle="modal" data-bs-target="#exampleModal">{{result.id}}</th>
+            <th scope="row" class="resultid" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getResultById(result.id)">{{result.id}}</th>
             <td>{{result.attempted}}</td>
             <td>{{result.marksGot}}</td>
             <td>{{result.date}}</td>
@@ -37,24 +37,15 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Simple Modal</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{userName}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>This is a simple modal example.</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum modi amet obcaecati non voluptas veniam numquam deserunt. Et, amet. Exercitationem repellat veritatis praesentium fugiat sed! Eveniet quasi neque deleniti sint?
-        Sequi fugiat officiis illo alias magnam nam, error doloribus, facilis, repudiandae nobis perspiciatis minima consequuntur eligendi commodi. Aut dolore ea, nisi sed, architecto quaerat perferendis laboriosam saepe amet minus error.
-        Sint incidunt tempora, labore maiores impedit quidem vero laborum eius expedita cum. Iusto veniam reiciendis hic. Exercitationem, quae! Deserunt, facere distinctio ex fugiat aperiam aliquam at ratione nemo tempore voluptates?
-        Voluptas unde quam, incidunt in, accusantium sequi atque, magnam temporibus id assumenda aliquid earum deleniti. Ratione, neque id. Incidunt sapiente, iste vel autem nesciunt culpa nostrum. Odit quis doloremque ullam?
-        Praesentium ad quisquam minima aliquam sit natus nobis, fugiat, doloribus magni officia, cupiditate tempora? Labore, possimus fuga. Dignissimos perspiciatis sint cumque ipsum, quas aperiam minus placeat veritatis enim vitae reprehenderit.
-        Dolores laboriosam ab voluptatibus nisi error, delectus enim voluptatum nulla culpa sit quia magnam, id, fugit commodi quaerat ea nemo fuga. Aliquid sed perferendis asperiores sequi eos repellendus voluptas harum!
-        Aspernatur itaque delectus nobis quibusdam, culpa repudiandae perspiciatis ipsam amet totam iusto officia deleniti tempore, molestias cumque distinctio. Atque, inventore corporis! Quia temporibus amet architecto nostrum distinctio excepturi eveniet eum?
-        Nam minima placeat neque reiciendis vero similique aliquid eius. Aliquid ipsum aperiam non libero deleniti alias quaerat perferendis omnis, laboriosam totam iusto exercitationem consequuntur. Nesciunt reiciendis rerum ipsa expedita minus?
-        </p>
+        <ckeditor [editor]="Editor" name="content" [(ngModel)]="Description.content"></ckeditor>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Send Notification</button>
       </div>
     </div>
   </div>

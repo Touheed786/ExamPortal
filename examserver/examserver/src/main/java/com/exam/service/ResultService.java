@@ -22,4 +22,6 @@ public interface ResultService {
 	public Map<String, Object> evaluateQuiz(List<Question> questions,Long userId);
 	
 	public List<Long> getYear();
+	
+	public Result getResultById(int id);
 }

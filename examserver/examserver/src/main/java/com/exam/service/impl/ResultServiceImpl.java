@@ -28,6 +28,7 @@ import com.exam.model.exam.Result;
 import com.exam.repo.ResultRepository;
 import com.exam.service.QuestionService;
 import com.exam.service.ResultService;
+import com.exam.service.UserService;
 
 @Service
 public class ResultServiceImpl implements ResultService {
@@ -37,6 +38,12 @@ public class ResultServiceImpl implements ResultService {
 	
 	@Autowired
 	private QuestionService questionService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@Override
 	public Result addResult(Result result) {
@@ -125,12 +132,18 @@ public class ResultServiceImpl implements ResultService {
         simpleformat = new SimpleDateFormat("YYYY");  
         String year= simpleformat.format(new Date());
         result.setYear(year);
-		
+		String resultSatatus = "You have Failed The Exam";
+		String mail = "";
 		if(percentage>=35F)
 		{
 			result.setTest_result(true);
+			resultSatatus = "Congratulations.! You have clear the exam";
 		}
 		result.setTest_result(result.getTest_result());
+		
+		mail = userService.getUserById(userId).getEmail();
+		if(mail != "")
+			emailService.sendMail(mail, "Regarding Result", resultSatatus);
 		
 		this.resultRepository.save(result);
 		
@@ -207,6 +220,11 @@ public class ResultServiceImpl implements ResultService {
 		}
 		Collections.sort(year,Collections.reverseOrder());
 		return year;
+	}
+
+	@Override
+	public Result getResultById(int id) {
+		return resultRepository.findById(id).get();
 	}
 
 	

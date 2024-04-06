@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class CategoryComponent {
 
-  onstructor(){}
+  constructor(){}
 
   currentCategoryId:any;
   isComponentVisibleflag = true

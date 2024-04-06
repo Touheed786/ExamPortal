@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatSortable, Sort } from '@angular/material/sort';
 import { ResultService } from 'src/app/services/result.service';
 import { Subject } from 'rxjs';
+import { error } from 'jquery';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 declare var $: any;
 // declare var $ : any;
 
@@ -14,11 +16,18 @@ declare var $: any;
 export class TestResultComponent  {
 
   constructor(private resultService:ResultService){}
-
+  
+  public Editor = ClassicEditor;
   Results:any = [];
   testingdata = "testinggggg..."
   dtOptions:DataTables.Settings = {}
   dtTrigger:Subject<any> = new Subject<any>();
+  ResultData:any
+  userName:string ="";
+  Description = {
+    content:"",
+    email:""
+  }
 
 
   ngOnInit(){
@@ -48,6 +57,18 @@ export class TestResultComponent  {
         // reject(error)
       })
     // })
+  }
+
+  getResultById(id:number){
+    this.Description.content = ""
+    this.resultService.getResultByResult(id).subscribe((data)=>{
+      this.ResultData = data;
+      this.userName = this.ResultData.user.firstName + " "+this.ResultData.user.lastName;
+      console.log(this.ResultData.user.username)
+      console.log("Working Fine")
+    },(err)=>{
+      console.log(err)
+    })
   }
 
 }

@@ -19,4 +19,6 @@ public interface UserService {
 	
 //	Editing User
 	public User updateUser(User user);
+	
+	public User getUserById(long userId);
 }

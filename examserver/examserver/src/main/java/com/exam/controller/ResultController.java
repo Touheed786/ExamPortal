@@ -59,4 +59,9 @@ public class ResultController {
 		return resultService.getYear();
 	}
 	
+	@GetMapping("/getResult/{id}")
+	public Result getResult(@PathVariable("id") int id) {
+		return resultService.getResultById(id);
+	}
+	
 }

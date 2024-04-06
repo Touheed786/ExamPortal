@@ -21,4 +21,8 @@ export class ResultService {
   public getYears(){
     return this.http.get(`${baseUrl}/result/year`)
   }
+
+  public getResultByResult(id:number){
+    return this.http.get(`${baseUrl}/result/getResult/${id}`);
+  }
 }
