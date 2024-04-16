@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.exam.model.Role;
 import com.exam.model.User;
+import com.exam.model.UserProfileResponse;
 import com.exam.model.UserRole;
 import com.exam.service.UserService;
+
+import jakarta.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/user")
@@ -32,6 +35,11 @@ public class UserController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@PostConstruct
+	public void initConstruct() throws Exception {
+		userService.initUser();
+	}
 	
 	//	creating user
 	@PostMapping("/")
@@ -55,7 +63,7 @@ public class UserController {
 //	Getting User by userName
 	
 	@GetMapping("/{username}")
-	public User getUser(@PathVariable("username") String username)
+	public UserProfileResponse getUser(@PathVariable("username") String username)
 	{
 		return this.userService.getUser(username);	
 	}
@@ -70,10 +78,11 @@ public class UserController {
 	
 //	Update user Details
 	
-	@PutMapping("/")
-	public User updateStudent(@RequestBody User user) 
+	@PostMapping("/update")
+	public User updateUser(@RequestBody UserProfileResponse profile) throws Exception
 	{
-		return this.userService.updateUser(user);
+		System.out.println("Touheed sab");
+		return this.userService.updateUser(profile);
 	}
 	
 	@GetMapping("/test")

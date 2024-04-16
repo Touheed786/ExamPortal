@@ -33,33 +33,33 @@ public class ExamserverApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Starting Code");
+		System.out.println("Application is Started");
 		
 		
-		User user = new User();
-		user.setFirstName("Allen");
-		user.setLastName("Mac");
-		user.setUsername("admin");
-		user.setPassword(this.bCryptPasswordEncoder.encode("admin"));
-		user.setEmail("admin@gmail.com");
-		user.setProfile("default.png");
-		 
-		Role role1 = new Role();
-		role1.setRoleId(44L);
-		role1.setRoleName("ADMIN");
-		
-		Set<UserRole> userRoleSet = new HashSet<>();
-		UserRole userRole = new UserRole();
-		userRole.setRole(role1);
-		userRole.setUser(user);
-		userRoleSet.add(userRole);
-		
-		User local = userRepository.findByUsername(user.getUsername());
-		if(local == null)
-		{
-			User user1 =  userService.createUser(user,userRoleSet);
-			System.out.println(user1.getUsername());
-		}
+//		User user = new User();
+//		user.setFirstName("Allen");
+//		user.setLastName("Mac");
+//		user.setUsername("admin");
+//		user.setPassword(this.bCryptPasswordEncoder.encode("admin"));
+//		user.setEmail("admin@gmail.com");
+//		user.setProfile("default.png");
+//		 
+//		Role role1 = new Role();
+//		role1.setRoleId(44L);
+//		role1.setRoleName("ADMIN");
+//		
+//		Set<UserRole> userRoleSet = new HashSet<>();
+//		UserRole userRole = new UserRole();
+//		userRole.setRole(role1);
+//		userRole.setUser(user);
+//		userRoleSet.add(userRole);
+//		
+//		User local = userRepository.findByUsername(user.getUsername());
+//		if(local == null)
+//		{
+//			User user1 =  userService.createUser(user,userRoleSet);
+//			System.out.println(user1.getUsername());
+//		}
 		
 
 	}

@@ -6,7 +6,10 @@ public class Authority implements GrantedAuthority {
 	
 	private String authority;
 	
-	
+
+	public Authority() {
+		super();
+	}
 
 	public Authority(String authority) {
 		super();

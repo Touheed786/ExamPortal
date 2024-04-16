@@ -7,22 +7,26 @@
             <div class="conatiner">
                 <div class="container text-center">
                     <img class="fix-width mb-4" src="../../../assets/signuplogo.png" alt="">
-                    <h2>{{currentUser.firstName}} {{currentUser.lastName}}</h2>
+                    <h2>{{userProfile.firstName}} {{userProfile.lastName}}</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
                         <table class="table">
                             <tr>
-                                <td>username</td>
-                                <td>{{currentUser.username}}</td>
+                                <td>Username</td>
+                                <td><input type="text" [(ngModel)]="userProfile.username"></td>
                             </tr>
+                            <!-- <tr>
+                                <td>Password</td>
+                                <td><input type="password" [(ngModel)]="userProfile.password"></td>
+                            </tr> -->
                             <tr>
                                 <td>UserId</td>
-                                <td>EXAM{{currentUser.id}}</td>
+                                <td>EXAM{{userProfile.id}}</td>
                             </tr>
-                            <tr *ngIf="currentUser.phone">
+                            <tr *ngIf="userProfile.phone">
                                 <td>Phone</td>
-                                <td>{{currentUser.phone}}</td>
+                                <td><input type="text" [(ngModel)]="userProfile.phone"></td>
                             </tr>
                             <tr>
                                 <td>Role</td>
@@ -32,6 +36,10 @@
                                 <td>Status</td>
                                 <td>{{currentUser.enabled?"ACTIVE":"NOTACTIVE"}}</td>
                             </tr>
+                            <tr>
+                                <td>Gmail</td>
+                                <td><input type="text" [(ngModel)]="userProfile.email"></td>
+                            </tr>
                         </table>      
                     </div>
                 </div>
@@ -39,7 +47,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions class="container">
-        <button mat-raised-button color="primary">UPDATE</button>
+        <button mat-raised-button color="primary" (click)="updateUser()">UPDATE</button>
         <button mat-raised-button color="accent">SHARE</button>
     </mat-card-actions>
 </mat-card>

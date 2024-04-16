@@ -1,12 +1,17 @@
 package com.exam.service.impl;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.exam.model.Role;
 import com.exam.model.User;
+import com.exam.model.UserProfileResponse;
 import com.exam.model.UserRole;
 import com.exam.repo.RoleRepository;
 import com.exam.repo.UserRepository;
@@ -20,6 +25,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private EmailService emailService;
 	
 //	creating user
 	@Override
@@ -41,10 +52,22 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User getUser(String username) {
+	public UserProfileResponse getUser(String username) {
 		// TODO Auto-generated method stub
 		User user =  this.userRepository.findByUsername(username);
-		return user;
+		
+		UserProfileResponse profile = new UserProfileResponse();
+		profile.setId(user.getId());
+		profile.setFirstName(user.getFirstName());
+		profile.setLastName(user.getLastName());
+		profile.setUsername(user.getUsername());
+//		profile.setPassword(user.getPassword());
+		profile.setProfile(user.getProfile());
+		profile.setEnable(user.isEnable());
+		profile.setPhone(user.getPhone());
+		profile.setEmail(user.getEmail());
+		
+		return profile;
 	}
 
 	@Override
@@ -54,20 +77,19 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User updateUser(User user) {
-		return this.userRepository.save(user);
-//		// TODO Auto-generated method stub
-//		User user1 = this.userRepository.findByUsername(userName);
-//		user1.setFirstName(user.getFirstName());
-//		user1.setUsername(user.getUsername());
-//		user1.setEmail(user.getEmail());
-//		user1.setLastName(user.getLastName());
-//		user1.setPassword(user.getPassword());
-//		user1.setPhone(user.getPhone());
-//		user1.setProfile(user.getProfile());
-//		user1.setEnable(user.isEnable());
-//		userRepository.save(user1);
-//		return user1;
+	public User updateUser(UserProfileResponse profile) {
+		User userDetails = userRepository.findById(profile.getId()).get();
+		
+		userDetails.setId(profile.getId());
+		userDetails.setUsername(profile.getUsername());
+		userDetails.setEmail(profile.getEmail());
+//		userDetails.setPassword(this.bCryptPasswordEncoder.encode(profile.getPassword()));
+		userDetails.setFirstName(profile.getFirstName());
+		userDetails.setLastName(profile.getLastName());
+		userDetails.setPhone(profile.getPhone());
+		userDetails.setProfile(profile.getProfile());
+		
+		return this.userRepository.save(userDetails);
 	}
 
 	@Override
@@ -75,6 +97,36 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userRepository.findById(userId).get();
 	}
+	
+	@Override
+	public void initUser() throws Exception {
+		System.out.println("Initializing the Data for User");
+		User user = new User();
+		user.setFirstName("Allen");
+		user.setLastName("Mac");
+		user.setUsername("admin");
+		user.setPassword(this.bCryptPasswordEncoder.encode("admin"));
+//		user.setEmail("admin@gmail.com");
+		user.setProfile("default.png");
+		 
+		Role role1 = new Role();
+		role1.setRoleId(44L);
+		role1.setRoleName("ADMIN");
+		
+		Set<UserRole> userRoleSet = new HashSet<>();
+		UserRole userRole = new UserRole();
+		userRole.setRole(role1);
+		userRole.setUser(user);
+		userRoleSet.add(userRole);
+		
+		List<User> local = userRepository.findAll();
+		if(local == null)
+		{
+			User user1 =  createUser(user,userRoleSet);
+			System.out.println(user1.getUsername());
+		}
+	}
+	
 	
 
 }

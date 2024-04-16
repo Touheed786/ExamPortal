@@ -185,5 +185,7 @@ public class User implements UserDetails {
 //	public void setResult(Set<Result> result) {
 //		this.results = result;
 //	}
+	
+	
 
 }

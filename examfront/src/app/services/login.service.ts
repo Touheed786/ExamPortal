@@ -80,4 +80,12 @@ export class LoginService {
     return user.authorities[0].authority;
   }
 
+  public updateUser(user:any){
+    return this.http.post(`${baseUrl}/user/update`,user);
+  }
+
+  public getProfileUser(username:string){
+    return this.http.get(`${baseUrl}/user/${username}`)
+  }
+
 }
