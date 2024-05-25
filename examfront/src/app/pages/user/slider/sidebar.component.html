@@ -1,18 +1,29 @@
-<mat-card>
-    <mat-action-list >
-        <div mat-subheader></div>
-        <button mat-list-item routerLink="/user-dashboard"><mat-icon mat-list-icon>home</mat-icon><span class="menu-text">Home</span></button>
-        
-        <button mat-list-item (click)="loadQuiz(0)">
-            <mat-icon mat-list-icon>quiz</mat-icon>
-            <span class="menu-text">All Quizez</span>
+<mat-card style="height: 100%;">
+    <mat-action-list>
+        <button class="btn d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse"
+            data-bs-target="#getting-started-collapse" aria-expanded="false">
+            Getting started
         </button>
-       
-        <div *ngFor="let category of Categories">
-            <button mat-list-item (click)="loadQuiz(category.cid)">
-                <mat-icon mat-list-icon>quiz</mat-icon>
-                    <span class="menu-text" >{{category.title}}</span>
-            </button>
+        <div class="collapse" id="getting-started-collapse" style="">
+            <div class="scrollable-container border p-3">
+
+
+                <div mat-subheader></div>
+                <button mat-list-item routerLink="/user-dashboard"><mat-icon mat-list-icon>home</mat-icon><span
+                        class="menu-text">Home</span></button>
+
+                <button mat-list-item (click)="loadQuiz(0)">
+                    <mat-icon mat-list-icon>quiz</mat-icon>
+                    <span class="menu-text">All Quizez</span>
+                </button>
+
+                <div *ngFor="let category of Categories">
+                    <button mat-list-item (click)="loadQuiz(category.cid)">
+                        <mat-icon mat-list-icon>quiz</mat-icon>
+                        <span class="menu-text">{{category.title}}</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </mat-action-list>
 </mat-card>

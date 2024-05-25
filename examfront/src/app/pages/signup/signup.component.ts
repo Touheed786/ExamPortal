@@ -4,6 +4,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,7 +15,7 @@ import { NgForm } from '@angular/forms';
  providedIn:'root'
 })
 export class SignupComponent {
-  constructor(private userService:UserServiceService,private snack:MatSnackBar){}
+  constructor(private userService:UserServiceService,private snack:MatSnackBar,private router:Router){}
   
   ngOnInit():void{}
    user={
@@ -47,6 +48,7 @@ export class SignupComponent {
     this.userService.addUser(this.user).subscribe(
       (data:any)=>{
         swal.fire("Successfully Done","User Id is "+data.id,'success')
+        this.router.navigate(['/login']);
       },
       (error)=>{
         console.log(error)

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.exam.model.Role;
@@ -14,6 +15,7 @@ import com.exam.model.User;
 import com.exam.model.UserRole;
 import com.exam.repo.UserRepository;
 import com.exam.service.UserService;
+import com.exam.service.impl.EmailService;
 
 @SpringBootApplication
 public class ExamserverApplication implements CommandLineRunner{
