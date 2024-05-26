@@ -14,7 +14,7 @@
         <tbody>
           <tr *ngFor="let result of Results" [ngStyle]="{'background-color' : !result.test_result ? '#f0b4b4':'none'}">
             <!-- <th scope="row" class="resultid" (click)="openModal(result.user.firstName)">{{result.id}}</th> -->
-            <th scope="row" class="resultid" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getResultById(result.id)">{{result.id}}</th>
+            <td scope="row" class="resultid" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getResultById(result.id)" style="font-weight: bold;">{{result.id}}</td>
             <td>{{result.attempted}}</td>
             <td>{{result.marksGot}}</td>
             <td>{{result.date}}</td>

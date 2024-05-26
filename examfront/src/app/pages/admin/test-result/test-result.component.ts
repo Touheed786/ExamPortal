@@ -5,6 +5,7 @@ import { Subject, buffer } from 'rxjs';
 import { error } from 'jquery';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as $ from 'jquery';
+import * as XLSX from 'xlsx';
 // declare var $ : any;
 
 // declare var window:any;
@@ -60,7 +61,7 @@ export class TestResultComponent implements AfterViewInit,OnDestroy   {
       // .addClass('exportExcell')
       // .addClass('btn-primary')
       .on('click', () => {
-        this.onCommonButtonClick();
+        this.exportToExcell();
       });
 
     const entriesContainer = $('.dataTables_length');
@@ -80,9 +81,37 @@ export class TestResultComponent implements AfterViewInit,OnDestroy   {
   ngOnDestroy(): void {
   }
 
-  onCommonButtonClick(): void {
-    // Define your common button click action here
-    console.log('Common Button clicked!');
+  exportToExcell(): void {
+    const table = $('#DataTables_Table_0');
+   
+    const headerData: string[] = [];
+    const tableData: string[][] = [];
+    
+
+    table.find('thead th').each(function() {
+      headerData.push($(this).text());
+    });
+    
+    // Iterate through each row in the table
+    table.find('tbody tr').each(function() {
+      const rowData: string[] = [];
+      
+      // Iterate through each cell in the row
+      $(this).find('td').each(function() {
+        rowData.push($(this).text());
+      });
+      
+      tableData.push(rowData);
+    });
+
+
+     // Create a new workbook and add the data as a worksheet
+     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([headerData, ...tableData]);
+     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+ 
+     // Generate a downloadable Excel file
+     XLSX.writeFile(wb, 'table_data.xlsx');
   }
  
 
