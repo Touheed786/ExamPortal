@@ -1,12 +1,11 @@
 <mat-card style="height: 100%;">
     <mat-action-list>
-        <button class="btn d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse"
+        <button (click)=" exapnd()" class="btn d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse"
             data-bs-target="#getting-started-collapse" aria-expanded="false">
-            Getting started
+            Categories
         </button>
         <div class="collapse" id="getting-started-collapse" style="">
-            <div class="scrollable-container border p-3">
-
+            <div class="scrollable-container border">
 
                 <div mat-subheader></div>
                 <button mat-list-item routerLink="/user-dashboard"><mat-icon mat-list-icon>home</mat-icon><span

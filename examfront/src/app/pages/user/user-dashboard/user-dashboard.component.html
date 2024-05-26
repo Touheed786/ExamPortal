@@ -1,10 +1,10 @@
 <div class="bootstrap-wrapper">
     <div class="container-fluid">
         <div class="row">
-            <div *ngIf="isSliderComponentVisibleflag" class="col-md-2 staticpage">
-                <app-sidebar-user></app-sidebar-user>
+            <div *ngIf="isSliderComponentVisibleflag" [ngClass]="!isExpand ? 'col-md-1':'col-md-2'" class="staticpage">
+                <app-sidebar-user (expandEvent)="expandEvent($event)"></app-sidebar-user>
             </div>
-            <div [ngClass]="{'col-md-12': isQuizStartComponentVisibleflag, 'col-md-10 offset-md-2': !isQuizStartComponentVisibleflag ,'dynamicpages': !isQuizStartComponentVisibleflag}" class="mt-30">
+            <div [ngClass]="{'col-md-12': isQuizStartComponentVisibleflag, 'col-md-11 offset-md-1': !isQuizStartComponentVisibleflag && !isExpand ,'dynamicpages': !isQuizStartComponentVisibleflag, 'col-md-10 offset-md-2':isExpand }" class="mt-30">
                 <!-- <router-outlet ></router-outlet>  -->
                 <div *ngIf="isLoadQuizComponentVisibleflag">
                     <app-load-quiz 

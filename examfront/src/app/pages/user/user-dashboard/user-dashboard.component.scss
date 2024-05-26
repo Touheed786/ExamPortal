@@ -12,4 +12,23 @@
     position: fixed;
     // overflow: scroll;
     z-index: 2;
+    min-width: 10%;
+}
+.col-md-2{
+    transition: 1s;
+}
+
+.offset-md-2{
+    padding-left: 0px;
+}
+
+.col-md-1 .scrollable-container{
+    transition: 3s;
+}
+
+@media (max-width: 767px) {
+    .dynamicpages{
+        padding-top: 6rem;
+        // position: fixed;
+    }
 }

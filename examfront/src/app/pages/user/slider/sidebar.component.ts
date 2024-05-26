@@ -13,6 +13,9 @@ export class SidebarComponent {
   constructor(private quizService:QuizService,private router:Router,private categoryService:CategoryService){}
 
   @Output() cIdEvent = new EventEmitter<number>();
+  @Output() expandEvent = new EventEmitter<boolean>();
+
+  isExpand:boolean = false;
 
   Categories:any = []
   ngOnInit(){
@@ -29,6 +32,11 @@ export class SidebarComponent {
     // subscribing forcefully for loading the load quiz component
     this.quizService.loadQuizStatus.next(true);
 
+  }
+
+  exapnd(){
+    this.isExpand = !this.isExpand;
+    this.expandEvent.emit(this.isExpand);
   }
 
 }
