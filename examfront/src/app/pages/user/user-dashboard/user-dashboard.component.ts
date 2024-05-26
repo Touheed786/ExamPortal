@@ -11,7 +11,7 @@ export class UserDashboardComponent {
   isSliderComponentVisibleflag:boolean = true;
   isInstructionsComponentVisibleflag:boolean = false;
   isQuizStartComponentVisibleflag:boolean = false;
-  currentCatId:any
+  currentCatId:number
   isExpand:boolean = false;
 
   ngOnInit(){}
@@ -50,6 +50,11 @@ export class UserDashboardComponent {
 
   expandEvent(event:boolean){
     this.isExpand = event;
+  }
+
+  cIdEvent(cId:number){
+    this.loadQuizComponentVisibleflag(true);
+    this.currentCatId = cId;
   }
 
 

@@ -13,7 +13,7 @@ export class LoadQuizComponent {
   constructor(private activateRoute:ActivatedRoute,private quizService:QuizService){}
   @Output() currentCIdEvent = new EventEmitter<number>();
   @Output() instructionComponentVisibleflag = new EventEmitter<boolean>();
-  currentCatId:any
+  @Input() currentCatId:any
   quizesData:any =[]
   spinner:boolean = true;
   ngOnInit(){

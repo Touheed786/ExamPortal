@@ -31,6 +31,7 @@ export class SidebarComponent {
     localStorage.setItem('currentCatId',val);
     // subscribing forcefully for loading the load quiz component
     this.quizService.loadQuizStatus.next(true);
+    this.cIdEvent.emit(val);
 
   }
 

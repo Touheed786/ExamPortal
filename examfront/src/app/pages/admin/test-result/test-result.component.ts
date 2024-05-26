@@ -1,10 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatSort, MatSortable, Sort } from '@angular/material/sort';
 import { ResultService } from 'src/app/services/result.service';
-import { Subject } from 'rxjs';
+import { Subject, buffer } from 'rxjs';
 import { error } from 'jquery';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-declare var $: any;
+import * as $ from 'jquery';
 // declare var $ : any;
 
 // declare var window:any;
@@ -13,9 +13,9 @@ declare var $: any;
   templateUrl: './test-result.component.html',
   styleUrls: ['./test-result.component.scss']
 })
-export class TestResultComponent  {
+export class TestResultComponent implements AfterViewInit,OnDestroy   {
 
-  constructor(private resultService:ResultService){}
+  constructor(private resultService:ResultService,private renderer: Renderer2, private el: ElementRef){}
   
   public Editor = ClassicEditor;
   Results:any = [];
@@ -31,15 +31,59 @@ export class TestResultComponent  {
 
 
   ngOnInit(){
+  
     
     this.dtOptions = {
       pagingType : "full_numbers",
       order : [0, 'desc']
     };
+
+    
     this.getResults();
     
   }
 
+
+  ngAfterViewInit() {
+    setTimeout(()=>{
+    //   const data = document.querySelector(".dataTables_length");
+    // const button = document.createElement("button");
+    // button.innerText = "click Me"
+    // button.className = "btn btn-primary"
+    // data?.appendChild(button)
+    // console.log(button)
+    // button.addEventListener('click',()=>{
+    //   console.log("Button is clicked")
+
+     const commonButton = $('<a title="Export"><img src="../../../../assets/export.png"></a>')
+      // .text('Common Button')
+      // .addClass('exportExcell')
+      // .addClass('btn-primary')
+      .on('click', () => {
+        this.onCommonButtonClick();
+      });
+
+    const entriesContainer = $('.dataTables_length');
+
+    commonButton.insertAfter(entriesContainer);
+
+    commonButton.find('img').css({
+      'height': '20px',
+      'width': '20px',
+      'margin': '4px',
+      'cursor': 'pointer'
+    });
+    },200)
+
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  onCommonButtonClick(): void {
+    // Define your common button click action here
+    console.log('Common Button clicked!');
+  }
  
 
   getResults()
@@ -47,10 +91,8 @@ export class TestResultComponent  {
     // return new Promise<void>((resolve, reject) => {
       this.resultService.getResults().subscribe((data:any)=>{
         this.Results = data;
-        console.log(this.Results);
-
         this.dtTrigger.next(null);
-
+        console.log(this.Results);
         // resolve();
       },(error)=>{
         console.log(error)
