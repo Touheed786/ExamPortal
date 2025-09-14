@@ -117,7 +117,7 @@ import { StatisticsComponent } from './pages/admin/statistics/statistics.compone
     MatProgressSpinnerModule,
     MatRadioModule,
     NgxUiLoaderModule,
-    // NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     MatSortModule,
     MdbAccordionModule,
     MdbCarouselModule,

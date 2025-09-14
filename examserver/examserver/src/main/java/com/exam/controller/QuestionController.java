@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.exam.model.User;
 import com.exam.model.exam.Question;
@@ -53,6 +57,14 @@ public class QuestionController {
 	public ResponseEntity<Question> add(@RequestBody Question question)
 	{
 		return ResponseEntity.ok(questionService.addQuestion(question));
+	}
+	
+	@PostMapping("/upload/{qId}")
+	public ResponseEntity<?> uploadQuestions(@RequestParam("file") MultipartFile file,@PathVariable("qId") Long qId) {
+		if(file.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("File is Empty");
+		}
+		return ResponseEntity.ok(questionService.readFile(file,qId));
 	}
 	
 //	update Question

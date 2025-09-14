@@ -18,6 +18,12 @@ export class ViewQuizzesComponent {
   quizzes:any = []
   Categories:any = []
   selecteCategory ="All Categories"
+  selectedFile: File | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
+  fileSelected:boolean = true;
+  selectedFiles: (File | null)[] = [];
+  successMessages: string[] = Array(this.quizzes.length).fill('');
+
   ngOnInit() {
     this.getQuizzes();
     this.getCategories();
@@ -94,4 +100,43 @@ export class ViewQuizzesComponent {
       this.getQuizzes();
     }
    }
+
+
+   onFileSelected(event: Event,index: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+      // this.previewFile(this.selectedFile);
+    }
+    this.fileSelected =false;
+    this.selectedFiles[index] = this.selectedFile;
+    console.log(event)
+  }
+
+  importQuestion(index:number,qId:number){
+    this.selectedFile = this.selectedFiles[index] ;
+    if(this.selectedFile ){
+      this.quizService.uploadQuestions(this.selectedFile,qId).subscribe((data:any)=>{
+        console.log(data.body)
+        this.successMessages[index] = data.body;
+        this.removeFile(index);
+      })
+    }else{
+      console.log("File is empty")
+    }
+
+
+  }
+
+  // previewFile(file: File): void {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => {
+  //     this.previewUrl = reader.result;
+  //   };
+  // }
+
+  removeFile(index:number): void {
+    this.selectedFiles.splice(index,1);
+  }
 }

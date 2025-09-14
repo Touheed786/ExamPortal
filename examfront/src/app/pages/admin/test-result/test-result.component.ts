@@ -82,7 +82,7 @@ export class TestResultComponent implements AfterViewInit,OnDestroy   {
   }
 
   exportToExcell(): void {
-    const table = $('#DataTables_Table_0');
+    const table = $('.dataTable');
    
     const headerData: string[] = [];
     const tableData: string[][] = [];

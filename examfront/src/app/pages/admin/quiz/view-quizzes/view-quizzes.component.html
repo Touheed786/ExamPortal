@@ -14,23 +14,38 @@
     <div class="">
 
     
-    <mat-card *ngFor="let q of quizzes" class="mb-2 card" [ngStyle]="{'background-color' : !q.active ? '#f0b4b4':'none'}">
+    <mat-card *ngFor="let q of quizzes;let i = index" class="mb-2 card" [ngStyle]="{'background-color' : !q.active ? '#f0b4b4':'none'}">
             <!-- <mat-list> -->
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                 <mat-card-title>{{q.title}}</mat-card-title>
                 <mat-card-subtitle>{{q.category.title}}</mat-card-subtitle>
                 <a (click)="update(q.qId)"><img src="../../../../../assets/update.png" class="example-update-image"></a>
+                <!-- <a class="alignment"><img src="../../../../../assets/arrow.png" class="example-import-image"></a> -->
+                <div *ngIf="successMessages[i]" class="success-message">
+                    <div>{{ successMessages[i]}}</div>
+                  </div>
             </mat-card-header>
             <mat-card-content>
                 {{q.description}}
             </mat-card-content>
-            <mat-card-actions>
-                <button mat-flat-button color="primary" (click)="addAndViewQuestions(q.qId)">Question</button>
+            <mat-card-actions class="action-container">
+                <button mat-flat-button color="primary" (click)="addAndViewQuestions(q.qId)" title="View & Add Questions">Question</button>
                 <button mat-stroked-button>Max Marks({{q.maxMArks}})</button>
                 <button mat-stroked-button>Number of Questions({{q.numberOfQuestions}})</button>
-                <button mat-stroked-button>Attempts</button>
+                <!-- <button mat-stroked-button>Attempts</button> -->
                 <button mat-flat-button color="accent" (click)="delete(q.qId)">Delete</button>
+                <!-- <input mat-flat-button color="accent" type="file" (change)="onFileSelected($event)"> -->
+                <div class="file-upload-container">
+                    <input *ngIf="!selectedFiles[i]?.name"  type="file" (change)="onFileSelected($event,i)" accept=".xlsx, .xls" title="Import Questions" />
+                    <div *ngIf="selectedFile" class="file-details">
+                      <div class="file-info" *ngIf="selectedFiles[i]?.name">
+                        <span>{{ selectedFiles[i]?.name }}</span>
+                        <button class="btn btn-primary" (click)="importQuestion(i,q.qId)">Import Questions</button>
+                        <button class="remove-button" (click)="removeFile(i)">X</button>
+                      </div>
+                    </div>
+                  </div>
             </mat-card-actions>
         </mat-card>
         <!-- <a class="add-quizz-image-parent" routerLink="/admin/add-quizz">
